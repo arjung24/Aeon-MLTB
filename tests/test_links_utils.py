@@ -3,8 +3,6 @@
 All functions are pure (regex / string checks) with no external dependencies.
 """
 
-import pytest
-
 from bot.helper.ext_utils.links_utils import (
     is_gdrive_id,
     is_gdrive_link,
@@ -79,7 +77,10 @@ class TestIsGdriveLink:
         assert is_gdrive_link("https://drive.google.com/file/d/abc123") is True
 
     def test_drive_usercontent_google_com(self):
-        assert is_gdrive_link("https://drive.usercontent.google.com/download?id=abc") is True
+        assert (
+            is_gdrive_link("https://drive.usercontent.google.com/download?id=abc")
+            is True
+        )
 
     def test_regular_google(self):
         assert is_gdrive_link("https://docs.google.com/spreadsheets") is False
@@ -96,7 +97,9 @@ class TestIsTelegramLink:
         assert is_telegram_link("https://t.me/somechannel/123") is True
 
     def test_tg_openmessage(self):
-        assert is_telegram_link("tg://openmessage?user_id=12345&message_id=99") is True
+        assert (
+            is_telegram_link("tg://openmessage?user_id=12345&message_id=99") is True
+        )
 
     def test_other_https(self):
         assert is_telegram_link("https://example.com") is False

@@ -20,14 +20,19 @@ def _reset_config():
 
 # ── Config._convert ────────────────────────────────────────────────────────────
 
+
 class TestConvertBool:
     def test_true_strings(self):
         for val in ("true", "True", "TRUE", "1", "yes", "Yes"):
-            assert Config._convert("IS_TEAM_DRIVE", val) is True, f"failed for {val!r}"
+            assert Config._convert("IS_TEAM_DRIVE", val) is True, (
+                f"failed for {val!r}"
+            )
 
     def test_false_strings(self):
         for val in ("false", "False", "0", "no", "random"):
-            assert Config._convert("IS_TEAM_DRIVE", val) is False, f"failed for {val!r}"
+            assert Config._convert("IS_TEAM_DRIVE", val) is False, (
+                f"failed for {val!r}"
+            )
 
     def test_native_bool_passthrough(self):
         assert Config._convert("IS_TEAM_DRIVE", True) is True
@@ -110,6 +115,7 @@ class TestConvertLeechDumpChat:
 
 # ── Config._normalize_value ────────────────────────────────────────────────────
 
+
 class TestNormalizeDefaultUpload:
     def test_valid_values_accepted(self):
         assert Config._normalize_value("DEFAULT_UPLOAD", "gd") == "gd"
@@ -127,19 +133,34 @@ class TestNormalizeDefaultUpload:
 
 class TestNormalizeUrlFields:
     def test_base_url_trailing_slash_stripped(self):
-        assert Config._normalize_value("BASE_URL", "https://example.com/") == "https://example.com"
+        assert (
+            Config._normalize_value("BASE_URL", "https://example.com/")
+            == "https://example.com"
+        )
 
     def test_base_url_multiple_slashes_stripped(self):
-        assert Config._normalize_value("BASE_URL", "https://example.com///") == "https://example.com"
+        assert (
+            Config._normalize_value("BASE_URL", "https://example.com///")
+            == "https://example.com"
+        )
 
     def test_rclone_serve_url_trailing_slash_stripped(self):
-        assert Config._normalize_value("RCLONE_SERVE_URL", "http://host:8080/") == "http://host:8080"
+        assert (
+            Config._normalize_value("RCLONE_SERVE_URL", "http://host:8080/")
+            == "http://host:8080"
+        )
 
     def test_index_url_trailing_slash_stripped(self):
-        assert Config._normalize_value("INDEX_URL", "https://index.example.com/") == "https://index.example.com"
+        assert (
+            Config._normalize_value("INDEX_URL", "https://index.example.com/")
+            == "https://index.example.com"
+        )
 
     def test_url_without_trailing_slash_unchanged(self):
-        assert Config._normalize_value("BASE_URL", "https://example.com") == "https://example.com"
+        assert (
+            Config._normalize_value("BASE_URL", "https://example.com")
+            == "https://example.com"
+        )
 
 
 class TestNormalizeWhitespace:
@@ -167,6 +188,7 @@ class TestNormalizeUsenetServers:
 
 
 # ── Config.set / Config.get round-trip ────────────────────────────────────────
+
 
 class TestConfigSetGet:
     def test_set_and_get_bool(self):

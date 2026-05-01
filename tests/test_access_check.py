@@ -9,8 +9,6 @@ representative nsfw_keywords list: ["porn", "nsfw", "adult", "nude",
 "hentai", "xnxx", "xvideos"].
 """
 
-import pytest
-
 from bot.helper.aeon_utils.access_check import is_nsfw, is_nsfw_data
 
 

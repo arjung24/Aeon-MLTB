@@ -7,8 +7,6 @@ as it requires mediainfo to be installed and a real file on disk.
 
 import hashlib
 
-import pytest
-
 from bot.helper.aeon_utils.caption_gen import (
     calculate_md5,
     get_video_quality,

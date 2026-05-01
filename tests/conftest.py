@@ -60,7 +60,9 @@ _mod("langcodes", Language=_Language)
 # pyrogram
 _pyrogram_errors = _mod(
     "pyrogram.errors",
-    PeerIdInvalid=type("PeerIdInvalid", (Exception,), {"NAME": "PeerIdInvalid", "MESSAGE": ""}),
+    PeerIdInvalid=type(
+        "PeerIdInvalid", (Exception,), {"NAME": "PeerIdInvalid", "MESSAGE": ""}
+    ),
     RPCError=type("RPCError", (Exception,), {"NAME": "RPCError", "MESSAGE": ""}),
     UserNotParticipant=type("UserNotParticipant", (Exception,), {}),
 )
@@ -125,7 +127,10 @@ _bot_aeon = _mod("bot.helper.aeon_utils")
 _bot_aeon.__path__ = ["/home/user/Aeon-MLTB/bot/helper/aeon_utils"]
 _bot_aeon.__package__ = "bot.helper.aeon_utils"
 
-_mod("bot.helper.aeon_utils.shorteners", short=AsyncMock(return_value="https://short.url/token"))
+_mod(
+    "bot.helper.aeon_utils.shorteners",
+    short=AsyncMock(return_value="https://short.url/token"),
+)
 
 _mod("bot.helper.telegram_helper")
 _mod("bot.helper.telegram_helper.bot_commands", BotCommands=MagicMock())

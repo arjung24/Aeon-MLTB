@@ -1691,7 +1691,7 @@ def filelions_and_streamwish(url):
 
 
 def streamvid(url: str):
-    file_code = url.split("/")[-1]
+    file_code = url.rsplit("/", maxsplit=1)[-1]
     parsed_url = urlparse(url)
     url = f"{parsed_url.scheme}://{parsed_url.hostname}/d/{file_code}"
     quality_defined = bool(url.strip().endswith(("_o", "_h", "_n", "_l")))
