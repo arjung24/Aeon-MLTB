@@ -19,3 +19,6 @@ list_drives.txt
 shorteners.txt
 cookies.txt
 *.session
+__pycache__/
+*.pyc
+.pytest_cache/

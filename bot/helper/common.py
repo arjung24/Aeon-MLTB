@@ -319,7 +319,7 @@ class TaskConfig:
             else:
                 chosen_service = default_upload
 
-            if chosen_service not in ["yt"] and not self.up_dest:
+            if chosen_service != "yt" and not self.up_dest:
                 raise ValueError(
                     f"No Upload Destination path/ID for service '{chosen_service}'! Please set an upload path or a default for it."
                 )
