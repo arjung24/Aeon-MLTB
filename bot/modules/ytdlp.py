@@ -1,3 +1,4 @@
+from ast import literal_eval
 from asyncio import Event, create_task, wait_for
 from functools import partial
 from time import time
@@ -378,7 +379,7 @@ class YtDlp(TaskListener):
             self.multi = 0
 
         try:
-            opt = eval(args["-opt"]) if args["-opt"] else {}
+            opt = literal_eval(args["-opt"]) if args["-opt"] else {}
         except Exception as e:
             LOGGER.error(e)
             opt = {}
