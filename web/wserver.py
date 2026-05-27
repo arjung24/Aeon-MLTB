@@ -39,7 +39,7 @@ async def lifespan(_: FastAPI):
     await qbittorrent.close()
 
 
-app = FastAPI(lifespan=lifespan)
+app = FastAPI(lifespan=lifespan, docs_url=None, redoc_url=None, openapi_url=None)
 
 
 templates = Jinja2Templates(directory="web/templates/")
@@ -264,7 +264,8 @@ async def homepage():
 
 @app.exception_handler(Exception)
 async def page_not_found(_, exc):
+    LOGGER.error(f"Unhandled exception: {exc}")
     return HTMLResponse(
-        f"<h1>404: Task not found! Mostly wrong input. <br><br>Error: {exc}</h1>",
+        "<h1>404: Task not found! Mostly wrong input.</h1>",
         status_code=404,
     )

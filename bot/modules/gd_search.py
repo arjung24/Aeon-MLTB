@@ -71,21 +71,21 @@ async def select_type(_, query):
         return await query.answer(text="Not Yours!", show_alert=True)
     if data[2] == "rec":
         await query.answer()
-        is_recursive = not bool(eval(data[3]))
-        buttons = await list_buttons(user_id, is_recursive, eval(data[4]))
+        is_recursive = data[3] != "True"
+        buttons = await list_buttons(user_id, is_recursive, data[4] == "True")
         return await edit_message(message, "Choose list options:", buttons)
     if data[2] == "ut":
         await query.answer()
-        user_token = not bool(eval(data[4]))
-        buttons = await list_buttons(user_id, eval(data[3]), user_token)
+        user_token = data[4] != "True"
+        buttons = await list_buttons(user_id, data[3] == "True", user_token)
         return await edit_message(message, "Choose list options:", buttons)
     if data[2] == "cancel":
         await query.answer()
         return await edit_message(message, "list has been canceled!")
     await query.answer()
     item_type = data[2]
-    is_recursive = eval(data[3])
-    user_token = eval(data[4])
+    is_recursive = data[3] == "True"
+    user_token = data[4] == "True"
     await edit_message(message, f"<b>Searching for <i>{key}</i></b>")
     await _list_drive(key, message, item_type, is_recursive, user_token, user_id)
     return None
